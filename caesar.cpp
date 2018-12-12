@@ -27,13 +27,13 @@ string encrypt(int i, string pass)
     string c_pass;
     for(int j = 0; j < i; j++)
     {
-      if((int)pass[j] < 123 && (int)pass[j] > 96)
+      if((int)pass[j] <= 'z' && (int)pass[j] >= 'a')
         {
-          c_pass[j] = ((int)pass[j] + number - 97) % 26 + 97;
+          c_pass[j] = ((int)pass[j] + number - 'a') % 26 + 'a';
         }
-      else if((int)pass[j]< 91 && (int)pass[j] > 64)
+      else if((int)pass[j] <= 'Z' && (int)pass[j] >= 'A')
         {
-          c_pass[j] = ((int)pass[j] + number - 65) % 26 + 65;
+          c_pass[j] = ((int)pass[j] + number - 'A') % 26 + 'A';
         }
       else
         {
