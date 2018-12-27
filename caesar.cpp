@@ -1,15 +1,17 @@
 #include <iostream>
 using namespace std;
-const int number = 3;
 int count(string pass);
-string encrypt(int i, string pass);
+string encrypt(int i, string pass, int key);
 void output(int i, string c_pass);
 int main() {
   string password;
-  cout << "請輸入密碼:";
+  int key;
+  cout << "請輸入明文:";
   cin >> password;
+  cout << "請輸入密鑰:";
+  cin >> key;
   int i = count(password);
-  output(i, encrypt(i, password)); 
+  output(i, encrypt(i, password, key)); 
 }
 //計算密碼位數
 int count(string pass)
@@ -22,18 +24,18 @@ int count(string pass)
     return i;
   }
 //密碼加密
-string encrypt(int i, string pass)
+string encrypt(int i, string pass, int key)
   {
     string c_pass;
     for(int j = 0; j < i; j++)
     {
       if((int)pass[j] <= 'z' && (int)pass[j] >= 'a')
         {
-          c_pass[j] = ((int)pass[j] + number - 'a') % 26 + 'a';
+          c_pass[j] = ((int)pass[j] + key - 'a') % 26 + 'a';
         }
       else if((int)pass[j] <= 'Z' && (int)pass[j] >= 'A')
         {
-          c_pass[j] = ((int)pass[j] + number - 'A') % 26 + 'A';
+          c_pass[j] = ((int)pass[j] + key - 'A') % 26 + 'A';
         }
       else
         {
@@ -45,6 +47,7 @@ string encrypt(int i, string pass)
 //輸出加密後的字串
 void output(int i, string c_pass)
   {
+    cout << "密文:";
     for (int k=0; k < i; k++)
     {
       cout << c_pass[k];
